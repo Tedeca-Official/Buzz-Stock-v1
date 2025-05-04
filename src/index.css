@@ -1,0 +1,285 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 246 80% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 160 84% 39%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 35 92% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 246 80% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 246 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 84% 39%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 35 92% 50%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    --sidebar-background: 240 10% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 246 80% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Roboto', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Improve scrolling on mobile */
+  html, body {
+    @apply overflow-x-hidden overscroll-none;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Remove outline on mobile taps */
+  input, button, select, textarea, a {
+    @apply focus:outline-none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Fix iOS input zoom */
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+
+/* Mobile responsive adjustments */
+@layer utilities {
+  .mobile-safe-area {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-hover-effect {
+    @apply transition-all duration-300 hover:shadow-lg;
+  }
+  
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .status-in-stock {
+    @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100;
+  }
+
+  .status-sold {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100;
+  }
+
+  .status-low-stock {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100;
+  }
+
+  .table-row-hover {
+    @apply hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors;
+  }
+  
+  /* Mobile improvements */
+  .mobile-button {
+    @apply rounded-full py-2 px-4;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .mobile-card {
+    @apply rounded-xl shadow-sm overflow-hidden;
+  }
+  
+  .mobile-input {
+    @apply text-base py-3 px-4;
+  }
+  
+  .mobile-scrollview {
+    @apply overflow-auto scrollbar-none;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Make dialog content scrollable on mobile */
+  .mobile-dialog-content {
+    @apply max-h-[80vh] overflow-auto;
+  }
+  
+  /* Fix sticky position on mobile */
+  .mobile-sticky {
+    @apply sticky top-0 z-10;
+  }
+  
+  /* Better mobile buttons with larger hit areas */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+}
+
+/* Media queries for mobile devices */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px; /* Slightly smaller base font for mobile */
+  }
+  
+  .table-scrollable {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Increase hit targets for better mobile usability */
+  button, 
+  [role="button"],
+  input,
+  select {
+    min-height: 44px;
+  }
+  
+  /* Improved mobile forms */
+  input, select, textarea {
+    @apply text-base py-3 rounded-lg;
+  }
+  
+  /* Better mobile bottom spacing */
+  main {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+}
+
+/* Make sure dark mode works properly */
+.dark {
+  background-color: hsl(var(--background));
+}
+
+.dark .text-savvy-primary {
+  color: hsl(var(--accent));
+}
+
+.dark .bg-primary {
+  background-color: hsl(var(--primary));
+}
+
+/* Override text colors for dashboard cards in dark mode */
+.dark .card {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .card-title {
+  @apply text-white;
+}
+
+.dark .card-description {
+  @apply text-gray-300;
+}
+
+/* Left navigation sidebar in light mode */
+.sidebar {
+  @apply bg-sidebar-background text-sidebar-foreground;
+}
+
+.sidebar .sidebar-nav-item {
+  @apply text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground;
+}
+
+.sidebar .sidebar-nav-item.active {
+  @apply bg-sidebar-primary text-sidebar-primary-foreground;
+}
+
+/* Improve animations */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
